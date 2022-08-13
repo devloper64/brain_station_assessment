@@ -51,7 +51,7 @@ class RepoDetailsFragment : Fragment() {
 
 
     @SuppressLint("SimpleDateFormat")
-    private fun getDateTime(dateTime: String): String {
+    fun getDateTime(dateTime: String): String {
 
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         val formatter = SimpleDateFormat("MM-dd-yyyy HH:mm:ss")

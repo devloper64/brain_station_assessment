@@ -139,8 +139,6 @@ class HomeFragment : BaseFragment() {
         }
 
         binding.spinner.setOnTouchListener(OnTouchListener { v, event ->
-
-            Log.d("NNnnnnnnnnnnnn","kkkkkkkkkkk")
             backState=false
             false
         })
