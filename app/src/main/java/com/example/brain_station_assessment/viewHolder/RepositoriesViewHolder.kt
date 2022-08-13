@@ -2,7 +2,7 @@ package com.example.brain_station_assessment.viewHolder
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brain_station_assessment.data.dto.reponse.Item
+import com.example.brain_station_assessment.data.dto.response.Item
 import com.example.brain_station_assessment.databinding.RepositoriesLayoutBinding
 import com.example.brain_station_assessment.listeners.RecyclerRepositoriesItemListener
 

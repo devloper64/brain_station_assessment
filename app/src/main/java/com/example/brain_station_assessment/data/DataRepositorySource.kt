@@ -1,7 +1,7 @@
 package com.example.brain_station_assessment.data
 
 
-import com.example.brain_station_assessment.data.dto.reponse.RepositoriesResponse
+import com.example.brain_station_assessment.data.dto.response.RepositoriesResponse
 import kotlinx.coroutines.flow.Flow
 
 

@@ -1,22 +1,24 @@
 package com.example.brain_station_assessment.fragment.home
 
 import android.R
-import android.R.attr.country
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.brain_station_assessment.adapter.RepositoriesAdapter
 import com.example.brain_station_assessment.data.Resource
 import com.example.brain_station_assessment.data.UserPreferences
-import com.example.brain_station_assessment.data.dto.reponse.Item
-import com.example.brain_station_assessment.data.dto.reponse.RepositoriesResponse
+import com.example.brain_station_assessment.data.dto.response.Item
+import com.example.brain_station_assessment.data.dto.response.RepositoriesResponse
 import com.example.brain_station_assessment.databinding.FragmentHomeBinding
 import com.example.brain_station_assessment.fragment.base.BaseFragment
 import com.example.brain_station_assessment.listeners.RecyclerRepositoriesItemListener
@@ -32,10 +34,11 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
-    private lateinit var loadingDialog: LoadingDialog
     var sort=""
     var sortList = arrayOf("Stars", "Updated")
     private lateinit var userPreferences: UserPreferences
+
+    private var backState=false
 
     override fun observeViewModel() {
         observe(homeViewModel.repositoriesLiveData, ::handleRepositoriesResult)
@@ -51,6 +54,8 @@ class HomeFragment : BaseFragment() {
     private val recyclerItemListener: RecyclerRepositoriesItemListener = object :
         RecyclerRepositoriesItemListener {
         override fun onItemSelected(item: Item) {
+            backState=true
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRepoDetailsFragment(item = item))
         }
     }
 
@@ -59,15 +64,17 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding=FragmentHomeBinding.inflate(inflater)
-        loadingDialog= LoadingDialog(requireActivity())
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userPreferences= UserPreferences(requireContext())
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerView.layoutManager = layoutManager
+
+
 
 
 
@@ -96,21 +103,30 @@ class HomeFragment : BaseFragment() {
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val data=parent?.getItemAtPosition(position) as String
 
+
+
+                  val data=parent?.getItemAtPosition(position) as String
                   if (data=="Stars"){
                       sort="stars"
                       runBlocking {
                           userPreferences.saveSortKey("stars")
                       }
-                      homeViewModel.getRepositories("Android",sort,"desc")
+                      if (!backState){
+                          homeViewModel.getRepositories("Android",sort,"desc")
+                      }
+
+
 
                   }else{
                       sort="updated"
                       runBlocking {
                           userPreferences.saveSortKey("updated")
                       }
-                      homeViewModel.getRepositories("Android",sort,"desc")
+                      if (!backState){
+                          homeViewModel.getRepositories("Android",sort,"desc")
+                      }
+
                   }
 
 
@@ -122,6 +138,13 @@ class HomeFragment : BaseFragment() {
 
         }
 
+        binding.spinner.setOnTouchListener(OnTouchListener { v, event ->
+
+            Log.d("NNnnnnnnnnnnnn","kkkkkkkkkkk")
+            backState=false
+            false
+        })
+
     }
 
 
@@ -130,16 +153,17 @@ class HomeFragment : BaseFragment() {
 
         when (status) {
             is Resource.Loading -> {
-                loadingDialog.startLoading()
+
+
             }
             is Resource.Success -> status.data?.let {
-                loadingDialog.dismissLoading()
+
                 binding.recyclerView.adapter=RepositoriesAdapter(it.items!!.toMutableList(),recyclerItemListener,requireContext())
-                //Log.d("-------------------->",""+ it.items!![0]!!.description)
+
 
             }
             is Resource.DataError -> {
-                loadingDialog.dismissLoading()
+
                 if (status.errorMsg!!.isNotBlank()) {
                     status.errorMsg.let { homeViewModel.showToastMessage(it) }
                 } else {

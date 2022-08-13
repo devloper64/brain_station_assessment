@@ -67,6 +67,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "androidx.annotation:annotation:$annotationVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_ktx"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidXJunitVersion"
     /**-------------------testing libs------------------------------------------**/
     //UI Testing , AndroidJUnitRunner and JUnit Rules &Espresso dependencies
@@ -99,6 +100,7 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$activityKtxVersion"
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     // Hilt
+
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodels"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
@@ -109,4 +111,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
 
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha05"
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 }

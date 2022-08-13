@@ -1,8 +1,9 @@
-package com.example.brain_station_assessment.data.dto.reponse
+package com.example.brain_station_assessment.data.dto.response
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class RepositoriesResponse(
@@ -12,4 +13,4 @@ data class RepositoriesResponse(
     val items: List<Item?>?,
     @Json(name = "total_count")
     val totalCount: Int?
-)
+): Serializable

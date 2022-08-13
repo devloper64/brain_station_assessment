@@ -1,8 +1,9 @@
-package com.example.brain_station_assessment.data.dto.reponse
+package com.example.brain_station_assessment.data.dto.response
 
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class Item(
@@ -164,4 +165,4 @@ data class Item(
     val watchersCount: Int?,
     @Json(name = "web_commit_signoff_required")
     val webCommitSignoffRequired: Boolean?
-)
+): Serializable

@@ -2,12 +2,11 @@ package com.example.brain_station_assessment.data.remote
 
 
 import com.example.brain_station_assessment.data.Resource
-import com.example.brain_station_assessment.data.dto.reponse.RepositoriesResponse
+import com.example.brain_station_assessment.data.dto.response.RepositoriesResponse
 import com.example.brain_station_assessment.data.error.NETWORK_ERROR
 import com.example.brain_station_assessment.data.error.NO_INTERNET_CONNECTION
 import com.example.brain_station_assessment.data.remote.service.Service
 import com.example.brain_station_assessment.utils.NetworkConnectivity
-import org.json.JSONObject
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject

@@ -1,11 +1,10 @@
 package com.example.brain_station_assessment.adapter
 
-import android.content.ClipData
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brain_station_assessment.data.dto.reponse.Item
+import com.example.brain_station_assessment.data.dto.response.Item
 import com.example.brain_station_assessment.databinding.RepositoriesLayoutBinding
 import com.example.brain_station_assessment.listeners.RecyclerRepositoriesItemListener
 import com.example.brain_station_assessment.viewHolder.RepositoriesViewHolder

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.brain_station_assessment.baseViewModel.BaseViewModel
 import com.example.brain_station_assessment.data.DataRepository
 import com.example.brain_station_assessment.data.Resource
-import com.example.brain_station_assessment.data.dto.reponse.RepositoriesResponse
+import com.example.brain_station_assessment.data.dto.response.RepositoriesResponse
 import com.example.brain_station_assessment.utils.SingleEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect

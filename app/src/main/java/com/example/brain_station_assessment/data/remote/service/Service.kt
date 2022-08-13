@@ -1,6 +1,6 @@
 package com.example.brain_station_assessment.data.remote.service
 
-import com.example.brain_station_assessment.data.dto.reponse.RepositoriesResponse
+import com.example.brain_station_assessment.data.dto.response.RepositoriesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
