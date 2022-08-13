@@ -21,54 +21,17 @@ class UserPreferences @Inject constructor(context: Context) {
 
 
 
-
-
-
-
-
-
-
-    val accessToken: Flow<String?>
+    val sortKey: Flow<String?>
         get() = dataStore.data.map { preferences ->
-            preferences[ACCESS_TOKEN]
+            preferences[SORT_KEY]
         }
 
-    val refreshToken: Flow<String?>
-        get() = dataStore.data.map { preferences ->
-            preferences[REFRESH_TOKEN]
-        }
-
-    val userId: Flow<String?>
-        get() = dataStore.data.map { preferences ->
-            preferences[USER_ID]
-        }
-
-    val userPoint: Flow<String?>
-        get() = dataStore.data.map { preferences ->
-            preferences[POINT]
-        }
-
-    suspend fun saveAccessTokens(accessToken: String, refreshToken: String) {
+    suspend fun saveSortKey(sortKey: String) {
         dataStore.edit { preferences ->
-            preferences[ACCESS_TOKEN] = accessToken
-            preferences[REFRESH_TOKEN] = refreshToken
+            preferences[SORT_KEY] = sortKey
         }
     }
 
-
-
-
-    suspend fun saveUserId(userId: String) {
-        dataStore.edit { preferences ->
-            preferences[USER_ID] = userId
-        }
-    }
-
-    suspend fun saveUserPoint(point: String) {
-        dataStore.edit { preferences ->
-            preferences[POINT] = point
-        }
-    }
 
 
     suspend fun clear() {
@@ -79,10 +42,8 @@ class UserPreferences @Inject constructor(context: Context) {
 
 
     companion object {
-        private val ACCESS_TOKEN = preferencesKey<String>("key_access_token")
-        private val REFRESH_TOKEN = preferencesKey<String>("key_refresh_token")
-        private val USER_ID = preferencesKey<String>("key_user_id")
-        private val POINT = preferencesKey<String>("key_user_point")
+        private val SORT_KEY = preferencesKey<String>("key_sort")
+
 
     }
 
